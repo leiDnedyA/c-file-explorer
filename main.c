@@ -1,46 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
-
-#define clear() printf("\033[H\033[J")
-
-void view(int cursorPos, struct dirent *dirs, struct dirent *files, struct dirent *others, int dirCount, int fileCount, int otherCount) {
-	clear();
-	printf("---------------------------------------\n");
-	
-	int currLine = 0;
-
-	for (int i = 0; i < dirCount; i++) {
-		char cursor;
-		if (currLine == cursorPos) {
-			cursor = '>';
-		} else {
-			cursor = ' ';
-		}
-		printf("%c\t%s\n", cursor, dirs[i].d_name);
-		currLine++;
-	}
-	
-	for (int i = 0; i < fileCount; i++) {
-		char cursor;
-		if (currLine == cursorPos) {
-			cursor = '>';
-		} else {
-			cursor = ' ';
-		}
-		printf("%c\t%s\n", cursor, files[i].d_name);
-		currLine++;
-	}
-	printf("\n");
-}
+#include "model.c"
 
 int main() {
-	
-	clear();
-	printf("\tAyden's File Explorer©\n");
-	printf("----------------------------------------------\n");
-	printf("Press any key to continue...\n");
-	getchar();
+
+	showGreeting();
 
 	DIR *folder;
 	struct dirent *entry;
@@ -92,7 +57,7 @@ int main() {
 
 	closedir(folder);
 
-	view(0, directories, files, others, dirCount, fileCount, otherCount);
+	render(0, directories, files, others, dirCount, fileCount, otherCount);
 
 	free(directories);
 	free(files);
