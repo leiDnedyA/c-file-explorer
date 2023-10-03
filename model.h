@@ -43,4 +43,15 @@ Model createEmptyModel(){
 	return result;
 }
 
+void deleteModel(Model model) {
+	free(model.directories);
+	free(model.files);
+	free(model.others);
+
+}
+
+char* currSelectedEntry(Model model, int cursorPos){
+
+}
+
 #endif // MODEL_H
