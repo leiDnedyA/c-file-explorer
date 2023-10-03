@@ -13,7 +13,9 @@ int main() {
 
 	printf("%s\n", model.directories[0].d_name);
 
-	render(model, 0);
+	render(model, 6);
+
+	printf("%s\n", currSelectedEntry(model, 6));
 
 	deleteModel(model);
 

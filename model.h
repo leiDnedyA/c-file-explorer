@@ -51,7 +51,12 @@ void deleteModel(Model model) {
 }
 
 char* currSelectedEntry(Model model, int cursorPos){
-
+	if (cursorPos < model.dirCount) {
+		return model.directories[cursorPos].d_name;
+	} else if (cursorPos < model.dirCount + model.fileCount) {
+		return model.files[cursorPos - model.dirCount].d_name;
+	}
+	return "";
 }
 
 #endif // MODEL_H
