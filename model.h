@@ -5,6 +5,9 @@
 #define MAX_FILE_COUNT 50
 #define MAX_OTHER_COUNT 20
 
+#ifndef MODEL_H
+#define MODEL_H
+
 typedef struct Model{
 	struct dirent *directories;
 	struct dirent *files;
@@ -39,3 +42,5 @@ Model createEmptyModel(){
 
 	return result;
 }
+
+#endif // MODEL_H

@@ -1,5 +1,8 @@
 #include <stdlib.h>
-#include "model.c"
+#include "model.h"
+
+#ifndef VIEW_H
+#define VIEW_H 
 
 #define clear() printf("\033[H\033[J")
 
@@ -12,36 +15,7 @@ void showGreeting() {
 	getchar();
 }
 
-void render(int cursorPos, struct dirent *dirs, struct dirent *files, struct dirent *others, int dirCount, int fileCount, int otherCount) {
-	clear();
-	printf("----------------------------------------------\n");
-	int currLine = 0;
-
-	for (int i = 0; i < dirCount; i++) {
-		char cursor;
-		if (currLine == cursorPos) {
-			cursor = '>';
-		} else {
-			cursor = ' ';
-		}
-		printf("%c\t%s\n", cursor, dirs[i].d_name);
-		currLine++;
-	}
-	
-	for (int i = 0; i < fileCount; i++) {
-		char cursor;
-		if (currLine == cursorPos) {
-			cursor = '>';
-		} else {
-			cursor = ' ';
-		}
-		printf("%c\t%s\n", cursor, files[i].d_name);
-		currLine++;
-	}
-	printf("\n");
-}
-
-void render2(Model model, int cursorPos) {
+void render(Model model, int cursorPos) {
 	clear();
 	printf("----------------------------------------------\n");
 	int currLine = 0;
@@ -70,3 +44,4 @@ void render2(Model model, int cursorPos) {
 	printf("\n");
 }
 
+#endif // VIEW_H

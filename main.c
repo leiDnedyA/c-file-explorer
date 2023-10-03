@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
-#include "view.c"
+#include "model.h"
+#include "view.h"
 
 int main() {
 
@@ -49,7 +50,7 @@ int main() {
 
 	closedir(folder);
 
-	render2(model, 0);
+	render(model, 0);
 
 	free(model.directories);
 	free(model.files);
