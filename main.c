@@ -15,53 +15,45 @@ int main() {
 	if(folder == NULL) {
 		printf("Unable to read directory\n");
 	}
-	
+
 	int maxDirCount = 20;
 	int maxFileCount = 50;
 	int maxOtherCount = 20;
 
-	int dirCount = 0;
-	int fileCount = 0;
-	int otherCount = 0;
-
-	int direntSize = sizeof(struct dirent);
-
-	struct dirent *directories = malloc(maxDirCount * direntSize);
-	struct dirent *files = (struct dirent*) malloc(maxFileCount * direntSize);
-	struct dirent *others = (struct dirent*) malloc(maxOtherCount * direntSize);
+	Model model = createEmptyModel();
 
 	while ( (entry=readdir(folder)) ) {
 		switch(entry->d_type) {
 			case DT_REG:
-				if (fileCount >= maxFileCount) {
+				if (model.fileCount >= maxFileCount) {
 					break;
 				}
-				files[fileCount] = *entry;
-				fileCount++;
+				model.files[model.fileCount] = *entry;
+				model.fileCount++;
 				break;
 			case DT_DIR:
-				if (dirCount >= maxDirCount) {
+				if (model.dirCount >= maxDirCount) {
 					break;
 				}
-				directories[dirCount] = *entry;
-				dirCount++;
+				model.directories[model.dirCount] = *entry;
+				model.dirCount++;
 				break;
 			default:
-				if (otherCount >= maxOtherCount) {
+				if (model.otherCount >= maxOtherCount) {
 					break;
 				}
-				otherCount++;
+				model.otherCount++;
 				break;
 		}
 	}
 
 	closedir(folder);
 
-	render(0, directories, files, others, dirCount, fileCount, otherCount);
+	render2(model, 0);
 
-	free(directories);
-	free(files);
-	free(others);
+	free(model.directories);
+	free(model.files);
+	free(model.others);
 
 	return 0;
 }
