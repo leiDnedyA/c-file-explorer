@@ -1,23 +1,24 @@
 #include <stdlib.h>
+#include <ncurses.h>
 #include "model.h"
 
 #ifndef VIEW_H
 #define VIEW_H 
 
-#define clear() printf("\033[H\033[J")
-
 void showGreeting() {
-	// clear();
-	system("tput clear");
-	printf("----------------------------------------------\n");
-	printf("\tAyden's File Explorer©\n");
-	printf("\tPress <Enter> to continue...\n");
-	getchar();
+	clear();
+	printw("----------------------------------------------\n");
+	printw("\tAyden's File Explorer©\n");
+	printw("\tPress <Enter> to continue...\n");
+	refresh();
+	getch();
+	refresh();
 }
 
 void render(Model model, int cursorPos) {
 	clear();
-	printf("----------------------------------------------\n");
+	printw("----------------------------------------------\n");
+	refresh();
 	int currLine = 0;
 
 	for (int i = 0; i < model.dirCount; i++) {
@@ -27,7 +28,8 @@ void render(Model model, int cursorPos) {
 		} else {
 			cursor = ' ';
 		}
-		printf("%c\t%s\n", cursor, model.directories[i].d_name);
+		printw("%c\t%s\n", cursor, model.directories[i].d_name);
+		refresh();
 		currLine++;
 	}
 	
@@ -38,10 +40,13 @@ void render(Model model, int cursorPos) {
 		} else {
 			cursor = ' ';
 		}
-		printf("%c\t%s\n", cursor, model.files[i].d_name);
+		printw("%c\t%s\n", cursor, model.files[i].d_name);
 		currLine++;
 	}
 	printf("\n");
+	refresh();
+	getch();
+	refresh();
 }
 
 #endif // VIEW_H

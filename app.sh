@@ -1,6 +1,6 @@
 #!/bin/sh
 
-gcc main.c
+gcc main.c -lncurses
 
 sleep 0.1
 
