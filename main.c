@@ -17,7 +17,11 @@ int main() {
 
 	showGreeting();
 
-	navigate(".");
+	char* newDir = navigate(".");
+
+	printw("%s\n", newDir);
+	getch();
+	refresh();
 
 	endwin();
 
