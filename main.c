@@ -30,10 +30,9 @@ int main() {
 	strcpy(sysCall, "gnome-terminal --working-directory=\"");
 	strcat(sysCall, realpath(newDir, NULL));
 	strcat(sysCall, "\"");
-	char* sysCallEcho = (char *) malloc (204);
-	strcpy(sysCallEcho, "echo ");
-	strcat(sysCallEcho, sysCall);
+
 	system(sysCall);
+	system("exit");
 
 //	free(newDir);
 //	free(sysCall);
