@@ -21,6 +21,8 @@ typedef struct Model{
 	int fileCount;
 	int otherCount;
 
+	int totalCount;
+
 
 } Model;
 
@@ -39,6 +41,8 @@ Model createEmptyModel(){
 	result.dirCount = 0;
 	result.fileCount = 0;
 	result.otherCount = 0;
+
+	result.totalCount = 0;
 
 	return result;
 }

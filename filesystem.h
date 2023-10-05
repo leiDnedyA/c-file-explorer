@@ -23,6 +23,7 @@ Model modelFromDir(char* dir){
 				}
 				model.files[model.fileCount] = *entry;
 				model.fileCount++;
+				model.totalCount++;
 				break;
 			case DT_DIR:
 				if (model.dirCount >= MAX_DIR_COUNT) {
@@ -30,12 +31,15 @@ Model modelFromDir(char* dir){
 				}
 				model.directories[model.dirCount] = *entry;
 				model.dirCount++;
+				model.totalCount++;
 				break;
 			default:
 				if (model.otherCount >= MAX_OTHER_COUNT) {
 					break;
 				}
 				model.otherCount++;
+				// for now, don't increment total because others
+				// aren't displayed
 				break;
 		}
 	}
