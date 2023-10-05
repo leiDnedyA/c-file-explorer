@@ -1,6 +1,8 @@
 #include <ncurses.h>
+#include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
-#include <dirent.h>
+#include <string.h>
 #include "model.h"
 #include "view.h"
 #include "filesystem.h"
@@ -20,10 +22,21 @@ int main() {
 	char* newDir = navigate(".");
 
 	printw("%s\n", newDir);
-	getch();
 	refresh();
 
 	endwin();
+
+	char* sysCall = (char *) malloc(200);
+	strcpy(sysCall, "gnome-terminal --working-directory=\"");
+	strcat(sysCall, realpath(newDir, NULL));
+	strcat(sysCall, "\"");
+	char* sysCallEcho = (char *) malloc (204);
+	strcpy(sysCallEcho, "echo ");
+	strcat(sysCallEcho, sysCall);
+	system(sysCall);
+
+//	free(newDir);
+//	free(sysCall);
 
 	return 0;
 }
