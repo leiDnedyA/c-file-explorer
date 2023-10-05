@@ -4,6 +4,7 @@
 #include "model.h"
 #include "view.h"
 #include "filesystem.h"
+#include "controller.h"
 
 int main() {
 
@@ -16,17 +17,7 @@ int main() {
 
 	showGreeting();
 
-	Model model = modelFromDir(".");
-
-	printw("%s\n", model.directories[0].d_name);
-	refresh();
-
-	render(model, 6);
-
-	printw("%s\n", currSelectedEntry(model, 6));
-	refresh();
-
-	deleteModel(model);
+	navigate(".");
 
 	endwin();
 

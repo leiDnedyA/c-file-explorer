@@ -43,9 +43,7 @@ void render(Model model, int cursorPos) {
 		printw("%c\t%s\n", cursor, model.files[i].d_name);
 		currLine++;
 	}
-	printf("\n");
-	refresh();
-	getch();
+	printw("\n");
 	refresh();
 }
 
