@@ -1,41 +1,28 @@
-#include <ncurses.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include "model.h"
-#include "view.h"
+// #include "view.h"
 #include "filesystem.h"
 #include "controller.h"
 
 int main() {
 
-	/* ncurses setup */
-
-	initscr();
-	raw();
-	keypad(stdscr, TRUE);
-	noecho();
-
-	showGreeting();
+//	showGreeting();
 
 	char* newDir = navigate(".");
 
-	printw("%s\n", newDir);
-	refresh();
-
-	endwin();
+	printf("%s\n", newDir);
 
 	char* sysCall = (char *) malloc(200);
 	strcpy(sysCall, "gnome-terminal --working-directory=\"");
 	strcat(sysCall, realpath(newDir, NULL));
 	strcat(sysCall, "\"");
 
-	system(sysCall);
-	system("exit");
-
-//	free(newDir);
-//	free(sysCall);
+	printf("%s", realpath(newDir, NULL));
+//	system(sysCall);
+//	system("exit");
 
 	return 0;
 }

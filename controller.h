@@ -1,51 +1,37 @@
 #include <string.h>
+#include <stdbool.h>
 #include "view.h"
 #include "model.h"
 
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#define UP_KEY_VAL 3 
-#define DOWN_KEY_VAL 2
-#define SPACE_KEY_VAL 32
-#define ENTER_KEY_VAL 10
 #define MAX_PATH_CHARS 200
 
 char* navigate(char* startDir) {
-	int cursorPos = 0;
 	bool terminated = false;
 	char* target = (char*) malloc(MAX_PATH_CHARS);
+	strcpy(target, startDir);
 
 	Model model;
 
 	while (true){
-		model = modelFromDir(startDir);
-		render(model, cursorPos);
-		char lastChar = getch();
-		/*
-		// Prints out code for last char typed
-		printw("%d\n", lastChar);
-		getch();
-		refresh();
-		*/
-		if (lastChar == UP_KEY_VAL) {
-			if (cursorPos > 0) {
-				cursorPos -= 1;
-			}
-			continue;
+		model = modelFromDir(target);
+		render(model);
+		char lastInput[4];
+		scanf("%s", lastInput);
+		printf("%s\n", lastInput);
+
+		if (strcmp(lastInput, "q") == 0) {
+			break;
 		}
-		if (lastChar == DOWN_KEY_VAL) {
-			if (cursorPos < model.totalCount - 1) {
-				cursorPos += 1;
-			}
-			continue;
-		}
-		if (lastChar == SPACE_KEY_VAL) {
-			// figure out how to check if curr entry is a directory
-		}
+
+		int cursorPos = atoi(lastInput);
+
 		strcat(target, "/");
+		printf("%s\n", currSelectedEntry(model, cursorPos));
 		strcat(target, currSelectedEntry(model, cursorPos));
-		break;
+//		break;
 
 	}
 	deleteModel(model);
@@ -55,7 +41,8 @@ char* navigate(char* startDir) {
 	strcat(result, "/");
 	strcat(result, target);
 
-	return result; 
+//	return result; 
+	return target;
 }
 
 #endif
