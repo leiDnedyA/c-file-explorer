@@ -6,5 +6,5 @@ sleep 0.1
 
 ./a.out
 
-kill -9 $PPID
+# kill -9 $PPID
 
