@@ -28,6 +28,7 @@ void render(Model model) {
 		currLine++;
 	}
 	printf("\n");
+	printf("Enter a line number, or press q to open the current target directory.\n");
 }
 
 #endif // VIEW_H
