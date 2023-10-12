@@ -23,16 +23,17 @@ void showGreeting() {
 }
 
 void render(Model model) {
+	printf("Key: " ANSI_COLOR_YELLOW "directory" ANSI_COLOR_RESET " / " ANSI_COLOR_BLUE "file\n" ANSI_COLOR_RESET);
 	printf("----------------------------------------------\n");
 	int currLine = 0;
 
 	for (int i = 0; i < model.dirCount; i++) {
-		printf("%d\t%s\n", currLine, model.directories[i].d_name);
+		printf("%d\t" ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET, currLine, model.directories[i].d_name);
 		currLine++;
 	}
 	
 	for (int i = 0; i < model.fileCount; i++) {
-		printf("%d\t" ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET, currLine, model.files[i].d_name);
+		printf("%d\t" ANSI_COLOR_BLUE "%s\n" ANSI_COLOR_RESET, currLine, model.files[i].d_name);
 		currLine++;
 	}
 	printf("\n");
