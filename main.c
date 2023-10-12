@@ -19,11 +19,10 @@ int main() {
 	strcpy(sysCall, "gnome-terminal --working-directory=\"");
 	strcat(sysCall, realpath(newDir, NULL));
 	strcat(sysCall, "\"");
-	strcat(sysCall, " -- nvim .");
+	strcat(sysCall, " -- nvim . & bash");
 
 	printf("%s\n", realpath(newDir, NULL));
 	system(sysCall);
-//	system("exit");
 
 	return 0;
 }
