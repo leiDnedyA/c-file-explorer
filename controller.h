@@ -8,6 +8,10 @@
 
 #define MAX_PATH_CHARS 200
 
+void start() {
+	showGreeting();
+}
+
 char* navigate(char* startDir) {
 	bool terminated = false;
 	char* target = (char*) malloc(MAX_PATH_CHARS);
@@ -20,16 +24,14 @@ char* navigate(char* startDir) {
 		render(model);
 		char lastInput[4];
 		scanf("%s", lastInput);
-		printf("%s\n", lastInput);
 
-		if (strcmp(lastInput, "q") == 0) {
+		if (strcmp(lastInput, ".") == 0) {
 			break;
 		}
 
 		int cursorPos = atoi(lastInput);
 
 		strcat(target, "/");
-		printf("%s\n", currSelectedEntry(model, cursorPos));
 		strcat(target, currSelectedEntry(model, cursorPos));
 //		break;
 
@@ -43,6 +45,13 @@ char* navigate(char* startDir) {
 
 //	return result; 
 	return target;
+}
+
+void openDir(char* path) {
+	showOpenPrompt();
+	char optionInput;
+	scanf("%c\n", &optionInput);
+	// add switch statement for options
 }
 
 #endif
