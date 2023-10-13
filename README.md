@@ -1,7 +1,7 @@
 TODO:
 
-- Consider switching render to just display directories
+- Add option at end to open neovim and terminal window in target dir
 - Make render also print out current working directory
-- Change the color of the the entry displayed depending on whether it's a file or dir
 - Figure out the best way to display files, sorting by filetype
 - Add makefile
+- Make readme look nicer

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 // #include <ncurses.h>
 #include "model.h"
 
@@ -15,14 +16,17 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
 #define PRINT_LINE printf("----------------------------------------------\n");
+#define CLEAR_WINDOW system("clear");
 
 void showGreeting() {
+	CLEAR_WINDOW
 	PRINT_LINE
 	printf(ANSI_COLOR_YELLOW "\tAyden's File Explorer©\n" ANSI_COLOR_RESET);
 	PRINT_LINE
 }
 
 void render(Model model) {
+	CLEAR_WINDOW
 	printf("Key: " ANSI_COLOR_YELLOW "directory" ANSI_COLOR_RESET " / " ANSI_COLOR_BLUE "file\n" ANSI_COLOR_RESET);
 	PRINT_LINE
 	int currLine = 0;
@@ -45,6 +49,7 @@ void printInputOption(char* key, char* description) {
 }
 
 void showOpenPrompt() {
+	CLEAR_WINDOW
 	PRINT_LINE
 	printf("Enter one of the following characters:\n");
 	printInputOption("t", "Open terminal window");
