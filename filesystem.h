@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include <dirent.h>
 #include "model.h"
 
@@ -14,6 +15,8 @@ Model modelFromDir(char* dir){
 	folder = opendir(dir);
 
 	Model model = createEmptyModel();
+
+	strcpy(model.path, dir);
 
 	while ( (entry=readdir(folder)) ) {
 		switch(entry->d_type) {

@@ -1,14 +1,20 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-#define MAX_DIR_COUNT 20
-#define MAX_FILE_COUNT 50
-#define MAX_OTHER_COUNT 20
+#ifndef MAX_PATH_CHARS
+#define MAX_PATH_CHARS 50
+#endif
 
 #ifndef MODEL_H
 #define MODEL_H
 
+#define MAX_DIR_COUNT 20
+#define MAX_FILE_COUNT 50
+#define MAX_OTHER_COUNT 20
+
 typedef struct Model{
+	char path[MAX_PATH_CHARS];
+
 	struct dirent *directories;
 	struct dirent *files;
 	struct dirent *others;

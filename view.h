@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-// #include <ncurses.h>
 #include "model.h"
 
 #ifndef VIEW_H
@@ -15,7 +14,7 @@
 #define ANSI_COLOR_CYAN    "\x1b[36m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#define PRINT_LINE printf("----------------------------------------------\n");
+#define PRINT_LINE printf("----------------------------------------------------------\n");
 #define CLEAR_WINDOW system("clear");
 
 void showGreeting() {
@@ -27,6 +26,8 @@ void showGreeting() {
 
 void render(Model model) {
 	CLEAR_WINDOW
+	PRINT_LINE
+	printf("Current path: " ANSI_COLOR_BLUE "%s" ANSI_COLOR_RESET "\n", realpath(model.path, NULL));
 	printf("Key: " ANSI_COLOR_YELLOW "directory" ANSI_COLOR_RESET " / " ANSI_COLOR_BLUE "file\n" ANSI_COLOR_RESET);
 	PRINT_LINE
 	int currLine = 0;
@@ -48,12 +49,15 @@ void printInputOption(char* key, char* description) {
 	printf(ANSI_COLOR_YELLOW "\t%s" ANSI_COLOR_RESET " : " ANSI_COLOR_BLUE "%s\n" ANSI_COLOR_RESET, key, description);
 }
 
-void showOpenPrompt() {
+void showOpenPrompt(char* path) {
 	CLEAR_WINDOW
+	PRINT_LINE
+	printf("Path: " ANSI_COLOR_BLUE "%s" ANSI_COLOR_RESET "\n", path);
 	PRINT_LINE
 	printf("Enter one of the following characters:\n");
 	printInputOption("t", "Open terminal window");
 	printInputOption("n", "Open neovim window");
+	printInputOption("b", "Open neovim window and terminal window");
 	printInputOption("q", "Quit");
 	printf(">");
 
