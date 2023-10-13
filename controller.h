@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include "view.h"
 #include "model.h"
+#include "launch_terminal.h"
 
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
@@ -49,9 +50,21 @@ char* navigate(char* startDir) {
 
 void openDir(char* path) {
 	showOpenPrompt();
-	char optionInput;
-	scanf("%c\n", &optionInput);
+	char optionInput[4];
+	scanf("%s", optionInput);
 	// add switch statement for options
+	if (strcmp(optionInput, "t") == 0) {
+		openTerminalWindow(path);
+		return;
+	}
+	if (strcmp(optionInput, "n") == 0) {
+		openNeovimWindow(path);
+		return;
+	}
+	if (strcmp(optionInput, "q") == 0) {
+		// exit the program
+		return;
+	}
 }
 
 #endif

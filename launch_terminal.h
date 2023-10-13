@@ -16,7 +16,7 @@ void openTerminalWindow(char* path) {
 	
 }
 
-void openTextEditor(char* path) {
+void openNeovimWindow(char* path) {
 
 	char* sysCall = (char *) malloc(200);
 	strcpy(sysCall, "gnome-terminal --working-directory=\"");
