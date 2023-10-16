@@ -7,7 +7,9 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#ifndef MAX_PATH_CHARS
 #define MAX_PATH_CHARS 200
+#endif
 
 void start() {
 	showGreeting();
@@ -49,21 +51,21 @@ char* navigate(char* startDir) {
 }
 
 void openDir(char* path) {
-	showOpenPrompt();
+	showOpenPrompt(realpath(path, NULL));
 	char optionInput[4];
 	scanf("%s", optionInput);
 	// add switch statement for options
 	if (strcmp(optionInput, "t") == 0) {
 		openTerminalWindow(path);
-		return;
 	}
-	if (strcmp(optionInput, "n") == 0) {
+	else if (strcmp(optionInput, "n") == 0) {
 		openNeovimWindow(path);
-		return;
 	}
-	if (strcmp(optionInput, "q") == 0) {
-		// exit the program
-		return;
+	else if (strcmp(optionInput, "b") == 0) {
+		openTerminalWindow(path);
+		openNeovimWindow(path);
+	} else {
+		system("clear");
 	}
 }
 

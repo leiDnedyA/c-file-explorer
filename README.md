@@ -1,7 +1,6 @@
 TODO:
 
-- Consider switching render to just display directories
-- Make render also print out current working directory
-- Change the color of the the entry displayed depending on whether it's a file or dir
-- Figure out the best way to display files, sorting by filetype
+- Test it out with 'other' files (e.g symlinks)
+- Make it so that if a file is selected that it can be opened in neovim
 - Add makefile
+- Make readme look nicer
