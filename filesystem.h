@@ -32,9 +32,17 @@ Model modelFromDir(char* dir){
 				if (model.dirCount >= MAX_DIR_COUNT) {
 					break;
 				}
-				model.directories[model.dirCount] = *entry;
-				model.dirCount++;
-				model.totalCount++;
+				// Make sure that '.' is first dir and '..' is 2nd
+				if (strcmp((*entry).d_name, ".") == 0) {
+					model.directories[0] = *entry;
+				}
+				else if (strcmp((*entry).d_name, "..") == 0) {
+					model.directories[1] = *entry;
+				} else {
+					model.directories[model.dirCount] = *entry;
+					model.dirCount++;
+					model.totalCount++;
+				}
 				break;
 			default:
 				if (model.otherCount >= MAX_OTHER_COUNT) {

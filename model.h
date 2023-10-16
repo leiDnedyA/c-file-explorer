@@ -44,11 +44,14 @@ Model createEmptyModel(){
 	result.filesSize = 0;
 	result.othersSize = 0;
 
-	result.dirCount = 0;
+	/*
+	   There are always at least 2 dirs, '.' and '..'
+	*/
+	result.dirCount = 2;
 	result.fileCount = 0;
 	result.otherCount = 0;
 
-	result.totalCount = 0;
+	result.totalCount = 2; // see prev. comment
 
 	return result;
 }
