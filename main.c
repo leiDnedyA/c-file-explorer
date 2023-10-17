@@ -12,11 +12,16 @@ int main() {
 
 	start();
 
-	char* newDir = navigate(".");
+//	char* targetDir; char* option;
+	NavigationResult navResult = navigate(".");
 
-	printf("%s\n", newDir);
+	if (strcmp(navResult.option, ".") == 0) {
+		promptOpenOption(navResult.targetDir);
+	} else {
+		openDirectory(realpath(navResult.targetDir, NULL), navResult.option);
+	}
 
-	openDir(realpath(newDir, NULL));
+// 	opens menu to see different options
 
 //	openTerminalWindow(realpath(newDir, NULL));
 

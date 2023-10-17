@@ -42,7 +42,7 @@ void render(Model model) {
 		currLine++;
 	}
 	printf("\n");
-	printf("Enter a line number, or enter \".\" to open the current target directory.\n");
+	printf("Enter a line number, enter \".\" to view the options menu and open the directory, or enter an open option.\n");
 }
 
 void printInputOption(char* key, char* description) {
