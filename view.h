@@ -12,6 +12,7 @@
 #define ANSI_COLOR_BLUE    "\x1b[34m"
 #define ANSI_COLOR_MAGENTA "\x1b[35m"
 #define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_GRAY    "\x1b[90m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
 #define PRINT_LINE printf("----------------------------------------------------------\n");
@@ -38,7 +39,7 @@ void render(Model model) {
 	}
 	
 	for (int i = 0; i < model.fileCount; i++) {
-		printf("%d\t" ANSI_COLOR_BLUE "%s\n" ANSI_COLOR_RESET, currLine, model.files[i].d_name);
+		printf(ANSI_COLOR_GRAY "%d\t%s\n" ANSI_COLOR_RESET, currLine, model.files[i].d_name);
 		currLine++;
 	}
 	printf("\n");
