@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include "model.h"
 
 #ifndef FILESYSTEM_H
@@ -58,6 +61,15 @@ Model modelFromDir(char* dir){
 	closedir(folder);
 	
 	return model;
+}
+
+
+int isDir(char* fileName) {
+	struct stat path;
+
+	stat(fileName, &path);
+
+	return S_ISREG(path.st_mode);
 }
 
 #endif

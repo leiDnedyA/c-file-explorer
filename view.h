@@ -29,7 +29,7 @@ void render(Model model) {
 	CLEAR_WINDOW
 	PRINT_LINE
 	printf("Current path: " ANSI_COLOR_BLUE "%s" ANSI_COLOR_RESET "\n", realpath(model.path, NULL));
-	printf("Key: " ANSI_COLOR_YELLOW "directory" ANSI_COLOR_RESET " / " ANSI_COLOR_BLUE "file\n" ANSI_COLOR_RESET);
+	printf("Key: " ANSI_COLOR_YELLOW "directory" ANSI_COLOR_RESET " / " ANSI_COLOR_GRAY "file\n" ANSI_COLOR_RESET);
 	PRINT_LINE
 	int currLine = 0;
 

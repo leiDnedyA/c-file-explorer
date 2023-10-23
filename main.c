@@ -15,6 +15,12 @@ int main() {
 //	char* targetDir; char* option;
 	NavigationResult navResult = navigate(".");
 
+	while (isDir(navResult.targetDir) != 0) {
+		// Display some sort of message, or simply open the file in nvim
+		// If message displayed, go back to navigation in target dir
+		return 0;
+	}
+
 	if (strcmp(navResult.option, ".") == 0) {
 		promptOpenOption(navResult.targetDir);
 	} else {
