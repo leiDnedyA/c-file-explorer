@@ -14,12 +14,21 @@ int main() {
 
 //	char* targetDir; char* option;
 	NavigationResult navResult = navigate(".");
+	
+	printf("test");
+	printf("%s\n", realpath(navResult.targetDir, NULL));
 
+	/*
 	while (isDir(navResult.targetDir) != 0) {
 		// Display some sort of message, or simply open the file in nvim
 		// If message displayed, go back to navigation in target dir
-		return 0;
+		navResult = navigate(realpath(navResult.targetDir, NULL));
 	}
+	*/
+
+	// for testing
+	openDirectory(realpath(navResult.targetDir, NULL), "%");
+	return 0;
 
 	if (strcmp(navResult.option, ".") == 0) {
 		promptOpenOption(navResult.targetDir);

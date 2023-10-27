@@ -55,8 +55,10 @@ NavigationResult navigate(char* startDir) {
 
 		strcat(target, "/");
 		strcat(target, currSelectedEntry(model, cursorPos));
-//		break;
 
+		if (isDir(target) != 0) {
+			break;
+		}
 	}
 	deleteModel(model);
 
@@ -80,6 +82,8 @@ void openDirectory(char* path, char* option) {
 	else if (strcmp(option, "b") == 0) {
 		openTerminalWindow(path);
 		openNeovimWindow(path);
+	} else if (strcmp(option, "%") == 0) {
+		return;
 	} else {
 		system("clear");
 	}
