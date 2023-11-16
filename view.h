@@ -57,6 +57,7 @@ void showOpenPrompt(char* path) {
 	printf("Enter one of the following characters:\n");
 	printInputOption("t", "Open terminal window");
 	printInputOption("n", "Open neovim window");
+	printInputOption("v", "Open vscode window");
 	printInputOption("b", "Open neovim window and terminal window");
 	printInputOption("q", "Quit");
 	printf(">");
