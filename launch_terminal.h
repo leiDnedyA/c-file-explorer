@@ -28,4 +28,16 @@ void openNeovimWindow(char* path) {
 
 }
 
+void openVSCodeWindow(char* path) {
+
+	char* sysCall = (char *) malloc(200);
+	strcpy(sysCall, "gnome-terminal --working-directory=\"");
+	strcat(sysCall, path);
+	strcat(sysCall, "\"");
+	strcat(sysCall, " -- bash -c 'code .; exit'");
+
+	system(sysCall);
+
+}
+
 #endif

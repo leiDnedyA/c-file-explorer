@@ -77,6 +77,9 @@ void openDirectory(char* path, char* option) {
 	else if (strcmp(option, "n") == 0) {
 		openNeovimWindow(path);
 	}
+	else if (strcmp(option, "v") == 0) {
+		openVSCodeWindow(path);
+	}
 	else if (strcmp(option, "b") == 0) {
 		openTerminalWindow(path);
 		openNeovimWindow(path);
